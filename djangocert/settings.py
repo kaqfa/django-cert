@@ -27,6 +27,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GRAPPELLI_ADMIN_TITLE = 'Admin Validasi Ijazah'
+
 
 # Application definition
 
