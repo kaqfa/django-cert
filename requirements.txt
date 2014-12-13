@@ -1,3 +1,8 @@
 django-grappelli
 easy-thumbnails
 mysql-python
+
+django-filebrowser
+django-reversion
+django-smuggler
+django-constance
