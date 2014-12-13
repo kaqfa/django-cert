@@ -1,10 +1,11 @@
 from django.db import models
+from base.models import TimeStamped
 from department.models import Course
 from student.models import Student
 # Create your models here.
 
 
-class Transcript(models.Model):
+class Transcript(TimeStamped):
     grade = models.DecimalField(max_digits=4, decimal_places=2)
     status = models.CharField(max_length=2, default='0')
     course = models.ForeignKey(Course)

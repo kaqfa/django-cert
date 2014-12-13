@@ -1,18 +1,19 @@
 from django.db import models
+from base.models import TimeStamped
 
 # Create your models here.
 
 
-class Department(models.Model):
+class Department(TimeStamped):
     DEPT_STATUS = (
-        ('1', 'Aktif'),
-        ('0', 'Non Aktif'),
+        (1, 'Aktif'),
+        (0, 'Non Aktif'),
     )
 
     code = models.CharField(max_length=5)
     name = models.CharField(max_length=50, verbose_name="Program Studi")
     faculty = models.CharField(max_length=80, verbose_name="Fakultas")
-    status = models.CharField(max_length=1, choices=DEPT_STATUS, default='1')
+    status = models.PositiveSmallIntegerField(choices=DEPT_STATUS, default='1')
 
     class Meta:
         verbose_name = 'Program Studi'
@@ -22,15 +23,15 @@ class Department(models.Model):
         return self.name
 
 
-class Course(models.Model):
+class Course(TimeStamped):
     COURSE_STATUS = (
-        ('1', 'Aktif'),
-        ('0', 'Non Aktif')
+        (1, 'Aktif'),
+        (0, 'Non Aktif')
     )
 
     code = models.CharField(max_length=10, verbose_name="Kode Mata Kuliah")
     name = models.CharField(max_length=100, verbose_name="Nama Mata Kuliah")
-    status = models.CharField(max_length=1, choices=COURSE_STATUS, default='1')
+    status = models.PositiveSmallIntegerField(choices=COURSE_STATUS, default='1')
     department = models.ForeignKey(Department, verbose_name="Fakultas")
 
     class Meta:

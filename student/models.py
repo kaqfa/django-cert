@@ -1,9 +1,10 @@
 from django.db import models
+from base.models import TimeStamped
 
 # Create your models here.
 
 
-class Graduation(models.Model):
+class Graduation(TimeStamped):
     period = models.IntegerField()
     grad_date = models.DateField()
     venue = models.CharField(max_length=100)
@@ -13,20 +14,23 @@ class Graduation(models.Model):
         verbose_name_plural = 'Periode Wisuda'
 
     def __unicode__(self):
-        return "Periode "+self.period
+        return "Periode "+str(self.period)
 
 
-class Student(models.Model):
+class Student(TimeStamped):
     STUDENT_STATUS = (
-        ('1', 'Aktif'),
-        ('2', 'Non Aktif'),
+        (1, 'Aktif'),
+        (2, 'Non Aktif'),
+        (3, 'Mangkir'),
+        (4, 'Lulus'),
+        (5, 'Meninggal'),
     )
     nim = models.CharField(max_length=30, primary_key=True)
     name = models.CharField(max_length=60)
     address = models.CharField(max_length=200, blank=True, default='')
     phone = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=200, blank=True, null=True)
-    status = models.CharField(max_length=2, choices=STUDENT_STATUS, default='1')
+    status = models.PositiveSmallIntegerField(choices=STUDENT_STATUS, default=3)
     graduation = models.ForeignKey(Graduation, null=True, blank=True)
 
     class Meta:
