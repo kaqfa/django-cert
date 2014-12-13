@@ -4,11 +4,11 @@ from .models import Student, Graduation
 
 
 class StudentAdmin(admin.ModelAdmin):
-    fields = ['nim', 'name', 'phone', 'email',' status', 'graduation']
+    list_display = ['nim', 'name', 'phone', 'email', 'status', 'graduation']
 
 
 class GraduationAdmin(admin.ModelAdmin):
-    fields = ['period', 'grad_date', 'venue']
+    list_display = ['period', 'grad_date', 'venue']
 
 
 admin.site.register(Student, StudentAdmin)

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from student.models import Student
 
 # Create your models here.
@@ -31,9 +32,10 @@ class Legalization(models.Model):
 
     uploaded_file = models.FileField(upload_to='legalize_file', null=True, blank=True)
     qr_code = models.CharField(max_length=200)
-    submitted_at = models.DateTimeField()
     status = models.CharField(max_length=1, choices=LEGAL_STATUS)
     student = models.ForeignKey(Student, blank=True, null=True)
+    submitted_at = models.DateTimeField()
+    submitter = models.ForeignKey(User)
 
     class Meta:
         verbose_name = 'Legalisir'
